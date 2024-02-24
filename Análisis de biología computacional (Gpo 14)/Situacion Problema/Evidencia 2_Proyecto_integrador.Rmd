@@ -1,0 +1,171 @@
+---
+title: "Evidencia 2_Proyecto_integrador"
+author: "Julieta Arteaga, Guillermo Villegas, Gabriel Melendez, Adara Pulido,"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+library(seqinr)
+library(ggplot2)
+library(Biostrings)
+library(adegenet)
+library(ape)
+library(ggtree)
+library(DECIPHER)
+library(viridis)
+library(tidyverse)
+library(data.table)
+
+```
+
+```{r}
+#Finds the variants off the Genbank
+virus <- c("MW133981","MT577009","MT835383","MT890462","MW056032","MT470219","MT594401","MW030193","MT810758","MW041156","MT324062","MT994849","MT670013","MT940481","MW134558","MT876433","MT845878","MT919790","MT955161","MT820489")
+nombre_virus <- c("USA","IND","BRA","RUS","ESP","COL","FRA","PER","MEX","GBR","ZAF","IRN","CHL","IRQ","ITA","BGD","DEU","PHL","TUR","SAU")
+virus_seq <- read.GenBank(virus, as.character=TRUE)
+```
+2. Calcula la longitud de las secuencias que incluyas.
+```{r}
+#Prints length
+for (seq in 1:length(nombre_virus)) {
+  print(nombre_virus[seq])
+  print(length(virus_seq[seq][[1]]))
+}
+
+```
+
+3. Crea una sola gráfica donde se comparen el número de bases de ADN que componen todas las variantes del virus. 
+```{r}
+#Converts each variant to a data frame
+SARS_USA <- as.data.frame(table(virus_seq[1][[1]]))
+rownames(SARS_USA) <- c(1,2,3,4,5)
+colnames(SARS_USA) <- c("Nucleotides","Freq")
+
+SARS_IND <- as.data.frame(table(virus_seq[2][[1]]))
+rownames(SARS_IND) <- c(1,2,3,4)
+colnames(SARS_IND) <- c("Nucleotides","Freq")
+
+SARS_BRA <- as.data.frame(table(virus_seq[3][[1]]))
+rownames(SARS_BRA) <- c(1,2,3,4)
+colnames(SARS_BRA) <- c("Nucleotides","Freq")
+
+SARS_RUS <- as.data.frame(table(virus_seq[4][[1]]))
+rownames(SARS_RUS) <- c(1,2,3,4)
+colnames(SARS_RUS) <- c("Nucleotides","Freq")
+
+SARS_ESP <- as.data.frame(table(virus_seq[5][[1]]))
+rownames(SARS_ESP) <- c(1,2,3,4)
+colnames(SARS_ESP) <- c("Nucleotides","Freq")
+
+SARS_COL <- as.data.frame(table(virus_seq[6][[1]]))
+rownames(SARS_COL) <- c(1,2,3,4)
+colnames(SARS_COL) <- c("Nucleotides","Freq")
+
+SARS_FRA <- as.data.frame(table(virus_seq[7][[1]]))
+rownames(SARS_FRA) <- c(1,2,3,4)
+colnames(SARS_FRA) <- c("Nucleotides","Freq")
+
+SARS_PER <- as.data.frame(table(virus_seq[8][[1]]))
+rownames(SARS_PER) <- c(1,2,3,4)
+colnames(SARS_PER) <- c("Nucleotides","Freq")
+
+SARS_MEX <- as.data.frame(table(virus_seq[9][[1]]))
+rownames(SARS_MEX) <- c(1,2,3,4)
+colnames(SARS_MEX) <- c("Nucleotides","Freq")
+
+SARS_GBR <- as.data.frame(table(virus_seq[10][[1]]))
+rownames(SARS_GBR) <- c(1,2,3,4)
+colnames(SARS_GBR) <- c("Nucleotides","Freq")
+
+SARS_ZAF <- as.data.frame(table(virus_seq[11][[1]]))
+rownames(SARS_ZAF) <- c(1,2,3,4)
+colnames(SARS_ZAF) <- c("Nucleotides","Freq")
+
+SARS_IRN <- as.data.frame(table(virus_seq[12][[1]]))
+rownames(SARS_IRN) <- c(1,2,3,4)
+colnames(SARS_IRN) <- c("Nucleotides","Freq")
+
+SARS_CHL <- as.data.frame(table(virus_seq[13][[1]]))
+rownames(SARS_CHL) <- c(1,2,3,4)
+colnames(SARS_CHL) <- c("Nucleotides","Freq")
+
+SARS_IRQ <- as.data.frame(table(virus_seq[14][[1]]))
+rownames(SARS_IRQ) <- c(1,2,3,4)
+colnames(SARS_IRQ) <- c("Nucleotides","Freq")
+
+SARS_ITA <- as.data.frame(table(virus_seq[15][[1]]))
+rownames(SARS_ITA) <- c(1,2,3,4)
+colnames(SARS_ITA) <- c("Nucleotides","Freq")
+
+SARS_BGD <- as.data.frame(table(virus_seq[16][[1]]))
+rownames(SARS_BGD) <- c(1,2,3,4)
+colnames(SARS_BGD) <- c("Nucleotides","Freq")
+
+SARS_DEU <- as.data.frame(table(virus_seq[17][[1]]))
+rownames(SARS_DEU) <- c(1,2,3,4)
+colnames(SARS_DEU) <- c("Nucleotides","Freq")
+
+SARS_PHL <- as.data.frame(table(virus_seq[18][[1]]))
+rownames(SARS_PHL) <- c(1,2,3,4)
+colnames(SARS_PHL) <- c("Nucleotides","Freq")
+
+SARS_TUR <- as.data.frame(table(virus_seq[19][[1]]))
+rownames(SARS_TUR) <- c(1,2,3,4)
+colnames(SARS_TUR) <- c("Nucleotides","Freq")
+
+SARS_SAU <- as.data.frame(table(virus_seq[20][[1]]))
+rownames(SARS_SAU) <- c(1,2,3,4)
+colnames(SARS_SAU) <- c("Nucleotides","Freq")
+
+#Join all variants into one
+nombre_virus <- c("USA","IND","BRA","RUS","ESP","COL","FRA","PER","MEX","GBR","ZAF","IRN","CHL","IRQ","ITA","BGD","DEU","PHL","TUR","SAU")
+
+vector <- list(SARS_USA,SARS_IND,SARS_BRA,SARS_RUS,SARS_ESP,SARS_COL,SARS_FRA,SARS_PER,SARS_MEX,SARS_GBR,SARS_ZAF,SARS_IRN,SARS_CHL,SARS_IRQ,SARS_ITA,SARS_BGD,SARS_DEU,SARS_PHL,SARS_TUR,SARS_SAU)
+
+df <- Reduce(function(x, y) merge(x, y,by = "Nucleotides", all=TRUE), vector)
+
+colnames(df) <- c("Nucleotides","SARS_USA","SARS_IND","SARS_BRA","SARS_RUS","SARS_ESP","SARS_COL","SARS_FRA","SARS_PER","SARS_MEX","SARS_GBR","SARS_ZAF","SARS_IRN","SARS_CHL","SARS_IRQ","SARS_ITA","SARS_BGD","SARS_DEU","SARS_PHL","SARS_TUR","SARS_SAU")
+
+#Create an arrangement based of a,g,c,t
+df2 <- data.frame(x = df$Nucleotides, y = c(df$SARS_USA,df$SARS_IND,df$SARS_BRA,df$SARS_RUS,df$SARS_ESP,df$SARS_COL,df$SARS_FRA,df$SARS_PER,df$SARS_MEX,df$SARS_GBR,df$SARS_ZAF,df$SARS_IRN,df$SARS_CHL,df$SARS_IRQ,df$SARS_ITA,df$SARS_BGD,df$SARS_DEU,df$SARS_PHL,df$SARS_TUR,df$SARS_SAU),
+group = c(rep("SARS_USA", nrow(df)),rep("SARS_IND", nrow(df)),rep("SARS_BRA", nrow(df)),rep("SARS_RUS", nrow(df)),rep("SARS_ESP", nrow(df)),rep("SARS_COL", nrow(df)),rep("SARS_FRA", nrow(df)),rep("SARS_PER", nrow(df)),rep("SARS_MEX", nrow(df)),rep("SARS_GBR", nrow(df)),rep("SARS_ZAF", nrow(df)),rep("SARS_IRN", nrow(df)),rep("SARS_CHL", nrow(df)),rep("SARS_IRQ", nrow(df)),rep("SARS_ITA", nrow(df)),rep("SARS_BGD", nrow(df)),rep("SARS_DEU", nrow(df)),rep("SARS_PHL", nrow(df)),rep("SARS_TUR", nrow(df)),rep("SARS_SAU", nrow(df))))
+
+
+# t(df2)
+
+df2_long <- gather(df, key = "country", value = "value",c("SARS_USA","SARS_IND","SARS_BRA","SARS_RUS","SARS_ESP","SARS_COL","SARS_FRA","SARS_PER","SARS_MEX","SARS_GBR","SARS_ZAF","SARS_IRN","SARS_CHL","SARS_IRQ","SARS_ITA","SARS_BGD","SARS_DEU","SARS_PHL","SARS_TUR","SARS_SAU"))
+
+
+ggplot(df2_long, aes(x=Nucleotides, y = value, fill = Nucleotides)) +
+  geom_bar(stat='identity') + scale_fill_discrete() +
+  facet_wrap(~country, ncol = 5, nrow = 5)  +
+  geom_text(aes(label=value),size = 2.3, position = "stack",hjust = 1, angle = 90)
+
+df$Nucleotides <- NULL
+df_new <- as.data.frame(t(df))
+colnames(df_new) <- c("a","c","g","t","n")
+df_new
+
+```
+4. Agrega un análisis jerárquico global obtenido de las secuencias que se seleccionaron para estudiar.
+```{r}
+library(fastcluster)
+library(cluster)
+library(purrr)
+data <- df_new
+
+ 
+# Dissimilarity matrix
+d <- dist(data, method = "euclidean")
+# Hierarchical clustering using Complete Linkage
+hc1 <- hclust(d, method = "mcquitty" )
+# Plot the obtained dendrogram
+plot(hc1, cex =0.6,hang=-1)
+```
+5. Agrega una interpretación escrita de tus gráficas y tus conclusiones según el caso de estudio que
+seleccionaste. No olvides sustentar tus argumentos con las lecturas que realizaste.
+
+En los gráficos de cada variante se puede apreciar la similitud en las cantidades de proteínas entre cada una. Por ejemplo, se aprecia que los necleotidos “t” y “a” son las bases más predominantes en todas las variantes. Además, se observa que las bases “g” y “c” tienen frecuencias bajas a comparación de sus otros pares. Finalmente, se aprecia claramente que ninguna variante tiene la presencia de “n” excepto la variente de Estados unidos.

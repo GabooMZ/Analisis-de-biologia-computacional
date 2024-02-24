@@ -1,0 +1,793 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Evidencia 2\_Proyecto\_integrador},
+  pdfauthor={Julieta Arteaga, Guillermo Villegas, Gabriel Melendez, Adara Pulido,},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Evidencia 2\_Proyecto\_integrador}
+\author{Julieta Arteaga, Guillermo Villegas, Gabriel Melendez, Adara
+Pulido,}
+\date{2023-05-07}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(seqinr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(Biostrings)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: BiocGenerics
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'BiocGenerics'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     IQR, mad, sd, var, xtabs
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+##     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+##     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+##     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+##     Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+##     table, tapply, union, unique, unsplit, which.max, which.min
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: S4Vectors
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: stats4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'S4Vectors'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     expand.grid, I, unname
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: IRanges
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'IRanges'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:grDevices':
+## 
+##     windows
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: XVector
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: GenomeInfoDb
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'Biostrings'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:seqinr':
+## 
+##     translate
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     strsplit
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(adegenet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ade4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'ade4'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:Biostrings':
+## 
+##     score
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:BiocGenerics':
+## 
+##     score
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##    /// adegenet 2.1.10 is loaded ////////////
+## 
+##    > overview: '?adegenet'
+##    > tutorials/doc/questions: 'adegenetWeb()' 
+##    > bug reports/feature requests: adegenetIssues()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ape)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'ape'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:Biostrings':
+## 
+##     complement
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:seqinr':
+## 
+##     as.alignment, consensus
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggtree)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ggtree v3.6.2 For help: https://yulab-smu.top/treedata-book/
+## 
+## If you use the ggtree package suite in published research, please cite
+## the appropriate paper(s):
+## 
+## Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam.
+## ggtree: an R package for visualization and annotation of phylogenetic
+## trees with their covariates and other associated data. Methods in
+## Ecology and Evolution. 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+## 
+## LG Wang, TTY Lam, S Xu, Z Dai, L Zhou, T Feng, P Guo, CW Dunn, BR
+## Jones, T Bradley, H Zhu, Y Guan, Y Jiang, G Yu. treeio: an R package
+## for phylogenetic tree input and output with richly annotated and
+## associated data. Molecular Biology and Evolution. 2020, 37(2):599-603.
+## doi: 10.1093/molbev/msz240
+## 
+## Shuangbin Xu, Lin Li, Xiao Luo, Meijun Chen, Wenli Tang, Li Zhan, Zehan
+## Dai, Tommy T. Lam, Yi Guan, Guangchuang Yu. Ggtree: A serialized data
+## object for visualization of a phylogenetic tree and annotation data.
+## iMeta 2022, 4(1):e56. doi:10.1002/imt2.56
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'ggtree'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ape':
+## 
+##     rotate
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:Biostrings':
+## 
+##     collapse
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:IRanges':
+## 
+##     collapse
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:S4Vectors':
+## 
+##     expand
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(DECIPHER)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: RSQLite
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: parallel
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(viridis)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: viridisLite
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.2     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v lubridate 1.9.2     v tibble    3.2.1
+## v purrr     1.0.1     v tidyr     1.3.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x lubridate::%within%()    masks IRanges::%within%()
+## x dplyr::collapse()        masks ggtree::collapse(), Biostrings::collapse(), IRanges::collapse()
+## x dplyr::combine()         masks BiocGenerics::combine()
+## x purrr::compact()         masks XVector::compact()
+## x dplyr::count()           masks seqinr::count()
+## x dplyr::desc()            masks IRanges::desc()
+## x tidyr::expand()          masks ggtree::expand(), S4Vectors::expand()
+## x dplyr::filter()          masks stats::filter()
+## x dplyr::first()           masks S4Vectors::first()
+## x dplyr::lag()             masks stats::lag()
+## x BiocGenerics::Position() masks ggplot2::Position(), base::Position()
+## x purrr::reduce()          masks IRanges::reduce()
+## x dplyr::rename()          masks S4Vectors::rename()
+## x lubridate::second()      masks S4Vectors::second()
+## x lubridate::second<-()    masks S4Vectors::second<-()
+## x dplyr::slice()           masks XVector::slice(), IRanges::slice()
+## x dplyr::where()           masks ape::where()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(data.table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'data.table'
+## 
+## The following objects are masked from 'package:lubridate':
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+##     yday, year
+## 
+## The following objects are masked from 'package:dplyr':
+## 
+##     between, first, last
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     transpose
+## 
+## The following object is masked from 'package:IRanges':
+## 
+##     shift
+## 
+## The following objects are masked from 'package:S4Vectors':
+## 
+##     first, second
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Finds the variants off the Genbank}
+\NormalTok{virus }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"MW133981"}\NormalTok{,}\StringTok{"MT577009"}\NormalTok{,}\StringTok{"MT835383"}\NormalTok{,}\StringTok{"MT890462"}\NormalTok{,}\StringTok{"MW056032"}\NormalTok{,}\StringTok{"MT470219"}\NormalTok{,}\StringTok{"MT594401"}\NormalTok{,}\StringTok{"MW030193"}\NormalTok{,}\StringTok{"MT810758"}\NormalTok{,}\StringTok{"MW041156"}\NormalTok{,}\StringTok{"MT324062"}\NormalTok{,}\StringTok{"MT994849"}\NormalTok{,}\StringTok{"MT670013"}\NormalTok{,}\StringTok{"MT940481"}\NormalTok{,}\StringTok{"MW134558"}\NormalTok{,}\StringTok{"MT876433"}\NormalTok{,}\StringTok{"MT845878"}\NormalTok{,}\StringTok{"MT919790"}\NormalTok{,}\StringTok{"MT955161"}\NormalTok{,}\StringTok{"MT820489"}\NormalTok{)}
+\NormalTok{nombre\_virus }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"USA"}\NormalTok{,}\StringTok{"IND"}\NormalTok{,}\StringTok{"BRA"}\NormalTok{,}\StringTok{"RUS"}\NormalTok{,}\StringTok{"ESP"}\NormalTok{,}\StringTok{"COL"}\NormalTok{,}\StringTok{"FRA"}\NormalTok{,}\StringTok{"PER"}\NormalTok{,}\StringTok{"MEX"}\NormalTok{,}\StringTok{"GBR"}\NormalTok{,}\StringTok{"ZAF"}\NormalTok{,}\StringTok{"IRN"}\NormalTok{,}\StringTok{"CHL"}\NormalTok{,}\StringTok{"IRQ"}\NormalTok{,}\StringTok{"ITA"}\NormalTok{,}\StringTok{"BGD"}\NormalTok{,}\StringTok{"DEU"}\NormalTok{,}\StringTok{"PHL"}\NormalTok{,}\StringTok{"TUR"}\NormalTok{,}\StringTok{"SAU"}\NormalTok{)}
+\NormalTok{virus\_seq }\OtherTok{\textless{}{-}} \FunctionTok{read.GenBank}\NormalTok{(virus, }\AttributeTok{as.character=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calcula la longitud de las secuencias que incluyas.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Prints length}
+\ControlFlowTok{for}\NormalTok{ (seq }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(nombre\_virus)) \{}
+  \FunctionTok{print}\NormalTok{(nombre\_virus[seq])}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{length}\NormalTok{(virus\_seq[seq][[}\DecValTok{1}\NormalTok{]]))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "USA"
+## [1] 29866
+## [1] "IND"
+## [1] 29903
+## [1] "BRA"
+## [1] 29858
+## [1] "RUS"
+## [1] 29903
+## [1] "ESP"
+## [1] 29826
+## [1] "COL"
+## [1] 29903
+## [1] "FRA"
+## [1] 29804
+## [1] "PER"
+## [1] 29520
+## [1] "MEX"
+## [1] 29409
+## [1] "GBR"
+## [1] 29870
+## [1] "ZAF"
+## [1] 29903
+## [1] "IRN"
+## [1] 29819
+## [1] "CHL"
+## [1] 29782
+## [1] "IRQ"
+## [1] 29821
+## [1] "ITA"
+## [1] 29806
+## [1] "BGD"
+## [1] 29903
+## [1] "DEU"
+## [1] 29835
+## [1] "PHL"
+## [1] 29815
+## [1] "TUR"
+## [1] 29852
+## [1] "SAU"
+## [1] 29825
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Crea una sola gráfica donde se comparen el número de bases de ADN que
+  componen todas las variantes del virus.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Converts each variant to a data frame}
+\NormalTok{SARS\_USA }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{1}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_USA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_USA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_IND }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{2}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_IND) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_IND) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_BRA }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{3}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_BRA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_BRA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_RUS }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{4}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_RUS) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_RUS) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_ESP }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{5}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_ESP) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_ESP) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_COL }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{6}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_COL) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_COL) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_FRA }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{7}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_FRA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_FRA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_PER }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{8}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_PER) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_PER) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_MEX }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{9}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_MEX) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_MEX) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_GBR }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{10}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_GBR) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_GBR) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_ZAF }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{11}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_ZAF) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_ZAF) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_IRN }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{12}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_IRN) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_IRN) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_CHL }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{13}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_CHL) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_CHL) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_IRQ }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{14}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_IRQ) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_IRQ) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_ITA }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{15}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_ITA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_ITA) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_BGD }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{16}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_BGD) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_BGD) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_DEU }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{17}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_DEU) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_DEU) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_PHL }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{18}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_PHL) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_PHL) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_TUR }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{19}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_TUR) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_TUR) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\NormalTok{SARS\_SAU }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(virus\_seq[}\DecValTok{20}\NormalTok{][[}\DecValTok{1}\NormalTok{]]))}
+\FunctionTok{rownames}\NormalTok{(SARS\_SAU) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(SARS\_SAU) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"Freq"}\NormalTok{)}
+
+\CommentTok{\#Join all variants into one}
+\NormalTok{nombre\_virus }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"USA"}\NormalTok{,}\StringTok{"IND"}\NormalTok{,}\StringTok{"BRA"}\NormalTok{,}\StringTok{"RUS"}\NormalTok{,}\StringTok{"ESP"}\NormalTok{,}\StringTok{"COL"}\NormalTok{,}\StringTok{"FRA"}\NormalTok{,}\StringTok{"PER"}\NormalTok{,}\StringTok{"MEX"}\NormalTok{,}\StringTok{"GBR"}\NormalTok{,}\StringTok{"ZAF"}\NormalTok{,}\StringTok{"IRN"}\NormalTok{,}\StringTok{"CHL"}\NormalTok{,}\StringTok{"IRQ"}\NormalTok{,}\StringTok{"ITA"}\NormalTok{,}\StringTok{"BGD"}\NormalTok{,}\StringTok{"DEU"}\NormalTok{,}\StringTok{"PHL"}\NormalTok{,}\StringTok{"TUR"}\NormalTok{,}\StringTok{"SAU"}\NormalTok{)}
+
+\NormalTok{vector }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(SARS\_USA,SARS\_IND,SARS\_BRA,SARS\_RUS,SARS\_ESP,SARS\_COL,SARS\_FRA,SARS\_PER,SARS\_MEX,SARS\_GBR,SARS\_ZAF,SARS\_IRN,SARS\_CHL,SARS\_IRQ,SARS\_ITA,SARS\_BGD,SARS\_DEU,SARS\_PHL,SARS\_TUR,SARS\_SAU)}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{Reduce}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x, y) }\FunctionTok{merge}\NormalTok{(x, y,}\AttributeTok{by =} \StringTok{"Nucleotides"}\NormalTok{, }\AttributeTok{all=}\ConstantTok{TRUE}\NormalTok{), vector)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y' are duplicated in the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y' are duplicated in the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in
+## the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in
+## the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y'
+## are duplicated in the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y'
+## are duplicated in the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y' are duplicated in the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y' are duplicated in the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in
+## the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y' are duplicated in
+## the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y'
+## are duplicated in the result
+
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y'
+## are duplicated in the result
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in merge.data.frame(x, y, by = "Nucleotides", all = TRUE): column names
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y', 'Freq.x', 'Freq.y',
+## 'Freq.x', 'Freq.y' are duplicated in the result
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Nucleotides"}\NormalTok{,}\StringTok{"SARS\_USA"}\NormalTok{,}\StringTok{"SARS\_IND"}\NormalTok{,}\StringTok{"SARS\_BRA"}\NormalTok{,}\StringTok{"SARS\_RUS"}\NormalTok{,}\StringTok{"SARS\_ESP"}\NormalTok{,}\StringTok{"SARS\_COL"}\NormalTok{,}\StringTok{"SARS\_FRA"}\NormalTok{,}\StringTok{"SARS\_PER"}\NormalTok{,}\StringTok{"SARS\_MEX"}\NormalTok{,}\StringTok{"SARS\_GBR"}\NormalTok{,}\StringTok{"SARS\_ZAF"}\NormalTok{,}\StringTok{"SARS\_IRN"}\NormalTok{,}\StringTok{"SARS\_CHL"}\NormalTok{,}\StringTok{"SARS\_IRQ"}\NormalTok{,}\StringTok{"SARS\_ITA"}\NormalTok{,}\StringTok{"SARS\_BGD"}\NormalTok{,}\StringTok{"SARS\_DEU"}\NormalTok{,}\StringTok{"SARS\_PHL"}\NormalTok{,}\StringTok{"SARS\_TUR"}\NormalTok{,}\StringTok{"SARS\_SAU"}\NormalTok{)}
+
+\CommentTok{\#Create an arrangement based of a,g,c,t}
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Nucleotides, }\AttributeTok{y =} \FunctionTok{c}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{SARS\_USA,df}\SpecialCharTok{$}\NormalTok{SARS\_IND,df}\SpecialCharTok{$}\NormalTok{SARS\_BRA,df}\SpecialCharTok{$}\NormalTok{SARS\_RUS,df}\SpecialCharTok{$}\NormalTok{SARS\_ESP,df}\SpecialCharTok{$}\NormalTok{SARS\_COL,df}\SpecialCharTok{$}\NormalTok{SARS\_FRA,df}\SpecialCharTok{$}\NormalTok{SARS\_PER,df}\SpecialCharTok{$}\NormalTok{SARS\_MEX,df}\SpecialCharTok{$}\NormalTok{SARS\_GBR,df}\SpecialCharTok{$}\NormalTok{SARS\_ZAF,df}\SpecialCharTok{$}\NormalTok{SARS\_IRN,df}\SpecialCharTok{$}\NormalTok{SARS\_CHL,df}\SpecialCharTok{$}\NormalTok{SARS\_IRQ,df}\SpecialCharTok{$}\NormalTok{SARS\_ITA,df}\SpecialCharTok{$}\NormalTok{SARS\_BGD,df}\SpecialCharTok{$}\NormalTok{SARS\_DEU,df}\SpecialCharTok{$}\NormalTok{SARS\_PHL,df}\SpecialCharTok{$}\NormalTok{SARS\_TUR,df}\SpecialCharTok{$}\NormalTok{SARS\_SAU),}
+\AttributeTok{group =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_USA"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_IND"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_BRA"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_RUS"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_ESP"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_COL"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_FRA"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_PER"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_MEX"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_GBR"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_ZAF"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_IRN"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_CHL"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_IRQ"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_ITA"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_BGD"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_DEU"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_PHL"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_TUR"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df)),}\FunctionTok{rep}\NormalTok{(}\StringTok{"SARS\_SAU"}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(df))))}
+
+
+\CommentTok{\# t(df2)}
+
+\NormalTok{df2\_long }\OtherTok{\textless{}{-}} \FunctionTok{gather}\NormalTok{(df, }\AttributeTok{key =} \StringTok{"country"}\NormalTok{, }\AttributeTok{value =} \StringTok{"value"}\NormalTok{,}\FunctionTok{c}\NormalTok{(}\StringTok{"SARS\_USA"}\NormalTok{,}\StringTok{"SARS\_IND"}\NormalTok{,}\StringTok{"SARS\_BRA"}\NormalTok{,}\StringTok{"SARS\_RUS"}\NormalTok{,}\StringTok{"SARS\_ESP"}\NormalTok{,}\StringTok{"SARS\_COL"}\NormalTok{,}\StringTok{"SARS\_FRA"}\NormalTok{,}\StringTok{"SARS\_PER"}\NormalTok{,}\StringTok{"SARS\_MEX"}\NormalTok{,}\StringTok{"SARS\_GBR"}\NormalTok{,}\StringTok{"SARS\_ZAF"}\NormalTok{,}\StringTok{"SARS\_IRN"}\NormalTok{,}\StringTok{"SARS\_CHL"}\NormalTok{,}\StringTok{"SARS\_IRQ"}\NormalTok{,}\StringTok{"SARS\_ITA"}\NormalTok{,}\StringTok{"SARS\_BGD"}\NormalTok{,}\StringTok{"SARS\_DEU"}\NormalTok{,}\StringTok{"SARS\_PHL"}\NormalTok{,}\StringTok{"SARS\_TUR"}\NormalTok{,}\StringTok{"SARS\_SAU"}\NormalTok{))}
+
+
+\FunctionTok{ggplot}\NormalTok{(df2\_long, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Nucleotides, }\AttributeTok{y =}\NormalTok{ value, }\AttributeTok{fill =}\NormalTok{ Nucleotides)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{scale\_fill\_discrete}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{country, }\AttributeTok{ncol =} \DecValTok{5}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{5}\NormalTok{)  }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{value),}\AttributeTok{size =} \FloatTok{2.3}\NormalTok{, }\AttributeTok{position =} \StringTok{"stack"}\NormalTok{,}\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{angle =} \DecValTok{90}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 19 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 19 rows containing missing values (`position_stack()`).
+\end{verbatim}
+
+\includegraphics{Evidencia-2_Proyecto_integrador_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{Nucleotides }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\NormalTok{df\_new }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{t}\NormalTok{(df))}
+\FunctionTok{colnames}\NormalTok{(df\_new) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"c"}\NormalTok{,}\StringTok{"g"}\NormalTok{,}\StringTok{"t"}\NormalTok{,}\StringTok{"n"}\NormalTok{)}
+\NormalTok{df\_new}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             a    c    g   t    n
+## SARS_USA 8905 5452 5830 125 9554
+## SARS_IND 8953 5488 5864  NA 9598
+## SARS_BRA 8914 5489 5861  NA 9594
+## SARS_RUS 8955 5491 5861  NA 9596
+## SARS_ESP 8907 5479 5854  NA 9586
+## SARS_COL 8952 5488 5863  NA 9600
+## SARS_FRA 8897 5477 5855  NA 9575
+## SARS_PER 8820 5412 5785  NA 9503
+## SARS_MEX 8793 5387 5761  NA 9468
+## SARS_GBR 8920 5490 5862  NA 9598
+## SARS_ZAF 8953 5487 5864  NA 9599
+## SARS_IRN 8905 5484 5852  NA 9578
+## SARS_CHL 8895 5473 5848  NA 9566
+## SARS_IRQ 8900 5472 5855  NA 9594
+## SARS_ITA 8900 5474 5853  NA 9579
+## SARS_BGD 8953 5489 5862  NA 9599
+## SARS_DEU 8908 5481 5855  NA 9591
+## SARS_PHL 8902 5473 5853  NA 9587
+## SARS_TUR 8913 5484 5859  NA 9596
+## SARS_SAU 8906 5481 5854  NA 9584
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Agrega un análisis jerárquico global obtenido de las secuencias que se
+  seleccionaron para estudiar.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(fastcluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'fastcluster'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     hclust
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(cluster)}
+\FunctionTok{library}\NormalTok{(purrr)}
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ df\_new}
+
+ 
+\CommentTok{\# Dissimilarity matrix}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(data, }\AttributeTok{method =} \StringTok{"euclidean"}\NormalTok{)}
+\CommentTok{\# Hierarchical clustering using Complete Linkage}
+\NormalTok{hc1 }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(d, }\AttributeTok{method =} \StringTok{"mcquitty"}\NormalTok{ )}
+\CommentTok{\# Plot the obtained dendrogram}
+\FunctionTok{plot}\NormalTok{(hc1, }\AttributeTok{cex =}\FloatTok{0.6}\NormalTok{,}\AttributeTok{hang=}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Evidencia-2_Proyecto_integrador_files/figure-latex/unnamed-chunk-5-1.pdf}
+5. Agrega una interpretación escrita de tus gráficas y tus conclusiones
+según el caso de estudio que seleccionaste. No olvides sustentar tus
+argumentos con las lecturas que realizaste.
+
+En los gráficos de cada variante se puede apreciar la similitud en las
+cantidades de proteínas entre cada una. Por ejemplo, se aprecia que los
+necleotidos ``t'' y ``a'' son las bases más predominantes en todas las
+variantes. Además, se observa que las bases ``g'' y ``c'' tienen
+frecuencias bajas a comparación de sus otros pares. Finalmente, se
+aprecia claramente que ninguna variante tiene la presencia de ``n''
+excepto la variente de Estados unidos.
+
+\end{document}

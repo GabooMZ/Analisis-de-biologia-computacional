@@ -1,0 +1,116 @@
+---
+title: "Actividad colaborativa en clase | Base de datos de virus de NCBI"
+author: "Gabriel M"
+date: "2023-04-20"
+output:
+  pdf_document: default
+  html_document: default
+---
+LIBRARIES
+```{r}
+library('seqinr')
+```
+
+```{r}
+Zika <- read.fasta('Zika.fasta')
+Corona_2 <- read.fasta('Corona_2.fasta')
+Corona_ME <- read.fasta('Corona_ME.fasta')
+Dengue <- read.fasta('Dengue.fasta')
+Influenza_A <- read.fasta('Influenza_A.fasta')
+Chikungunya <- read.fasta('Chikungunya.fasta')
+
+```
+
+1. ¿Cuál es el tamaño de cada secuencia?
+```{r}
+tamaño <- function(seq){
+  return(nchar(seq))
+}
+
+# El tamaño de cada secuencia:
+tamaño(Zika)
+tamaño(Corona_2)
+tamaño(Corona_ME)
+tamaño(Dengue)
+tamaño(Influenza_A)
+tamaño(Chikungunya )
+```
+2 - 3. ¿Cúal es la composición de nucleótidos de cada secuencia? - ¿Cuál es el contenido de GC de cada virus?
+```{r}
+nucleotide_data <- function(dna){
+  print('Tamaño de secuencia')
+  print(length(dna[[1]]))
+  print('Composición de nucleótidos')
+  print(count(dna[[1]],1))
+  print('Cantidad de GC en la secuencia')
+  count(dna[[1]],2)['gc']
+  
+}
+print("Zika:")
+nucleotide_data(Zika)
+print("Corona_2:")
+nucleotide_data(Corona_2)
+print("Corona_ME:")
+nucleotide_data(Corona_ME)
+print("Dengue:")
+nucleotide_data(Dengue)
+print("Influenza_A:")
+nucleotide_data(Influenza_A)
+print("Chikungunya:")
+nucleotide_data(Chikungunya)
+ 
+```
+
+4. Crear una función para obtener la secuencia en complementaria e imprimirla por cada secuencia
+```{r}
+dnaToComplementary <-function (dna){
+  complementaryDna <-''
+  for (base in 1:nchar(dna)){
+    if (substr(dna, base, base)== 'T'){
+      complementaryDna = paste(complementaryDna,'A',sep = '')
+    }
+    else if (substr(dna, base, base)== 'C'){
+      complementaryDna = paste(complementaryDna,'G', sep = '')   
+    }
+   else if (substr(dna, base, base)== 'G'){
+      complementaryDna = paste(complementaryDna,'C', sep='')
+    }
+   else if (substr(dna, base, base)== 'A'){
+      complementaryDna = paste(complementaryDna,'T', sep = '')   
+    }
+  }
+  return (complementaryDna)
+}
+```
+5. Crear una gráfica de resumen para comparar la composición de nucleótidos de las 5 secuencias.
+```{r}
+compara_1 <- function(){
+  # par(mfrow=c(1,5))
+  
+  barplot(table(Zika),col = 1:4,main="Zika",xlab="Nucleotide",ylab = "Instances of Nucleotide")
+  barplot(table(Corona_2),col = 1:4,main="Corona_2",xlab="Nucleotide",ylab = "Instances of Nucleotide")
+  barplot(table(Corona_ME),col = 1:4,main="Corona_ME",xlab="Nucleotide",ylab = "Instances of Nucleotide")
+  barplot(table(Dengue),col = 1:4,main="Dengue",xlab="Nucleotide",ylab = "Instances of Nucleotide")
+  barplot(table(Influenza_A),col = 1:4,main="Influenza_A",xlab="Nucleotide",ylab = "Instances of Nucleotide")
+  barplot(table(Chikungunya),col = 1:4,main="Chikungunya",xlab="Nucleotide",ylab = "Instances of Nucleotide")
+}
+
+compara_2 <- function(seq1,seq2,seq3,seq4,seq5,seq6){
+  # par(mfrow=c(1,5))
+  barplot(c(count(seq1[[1]],2)),col = 1:16,main="Zika",xlab="Nucleotide Pairs",ylab = "Instances of Nucleotide")
+  barplot(c(count(seq2[[1]],2)),col = 1:16,main="Corona_2",xlab="Nucleotide Pairs",ylab = "Instances of Nucleotide")
+  barplot(c(count(seq3[[1]],2)),col = 1:16,main="Corona_ME",xlab="Nucleotide Pairs",ylab = "Instances of Nucleotide")
+  barplot(c(count(seq4[[1]],2)),col = 1:16,main="Dengue",xlab="Nucleotide Pairs",ylab = "Instances of Nucleotide")
+  barplot(c(count(seq5[[1]],2)),col = 1:16,main="Influenza_A",xlab="Nucleotide Pairs",ylab = "Instances of Nucleotide")
+  barplot(c(count(seq6[[1]],2)),col = 1:16,main="Chikungunya",xlab="Nucleotide Pairs",ylab = "Instances of Nucleotide")
+}
+par(mfrow=c(1,6))
+compara_1()
+par(mfrow=c(1,1))
+compara_1()
+par(mfrow=c(1,6))
+compara_2(Zika,Corona_2,Corona_ME,Dengue,Influenza_A,Chikungunya)
+par(mfrow=c(1,1))
+compara_2(Zika,Corona_2,Corona_ME,Dengue,Influenza_A,Chikungunya)
+
+```

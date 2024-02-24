@@ -1,0 +1,341 @@
+---
+title: "arbolesfilogeneticos"
+output: html_document
+date: "2023-04-30"
+---
+
+
+```{r}
+library("Rcpp")
+library("maps")
+library("ape")
+library("phangorn")
+library("phytools")
+library("geiger")
+
+```
+
+
+```{r}
+library(ape)
+text.string<- "(lemur,human);"
+vert.tree<-read.tree(text=text.string)
+plot(vert.tree,no.margin=TRUE,edge.width=2)
+
+text.string<-
+  "(bat,(lemur,human));"
+vert.tree<-read.tree(text=text.string)
+plot(vert.tree,no.margin=TRUE,edge.width=2)
+```
+#1. Interpreta el resultado de la imagen anterior aquí:  De la imagen anterior se puede interpretar que son más similares los humanos con los lemur de lo que ambos son con los murciélagos, los tres vieniendo de un mismo ancestro.
+
+
+```{r}
+text.string<-
+  "(((cow, pig),whale),(bat,(lemur,human)));"
+vert.tree<-read.tree(text=text.string)
+plot(vert.tree,no.margin=TRUE,edge.width=2)
+```
+
+#2. Interpreta el resultado de la imagen anterior aquí: Esta imagen es como la imagen ampliada de la anterior en la que se obeserva el orden de jerarquía de similitudes más estreschas entre el humano y el lemur, y un poco más alejado el murciélago. Sin embargo los tres vienen de un mismo antecesor que a su vez también el cerdo y la vaca tienen su parecido estrecho, más alejado de la ballena pero los tres más relacionados entre sí que el humano, lemur y murciélago.
+
+
+
+```{r}
+library(png)
+getwd()
+setwd("/Users/gusortzep/Documents/Tec/Uni/2/R/arboles")
+mi_imagen <- readPNG("/Users/gusortzep/Documents/Tec/Uni/2/R/arboles/arbolEjercicio01.png")
+# Mostrar imagen
+plot(0, type = "n", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE, xlab = "", ylab = "")
+rasterImage(mi_imagen, 0, 0, 1, 1)
+
+```
+![Arbol_Ejercicio_01](/Users/gusortzep/Documents/Tec/Uni/2/R/arboles/arbolEjercicio01.png)
+
+
+
+```{r}
+library(phytools)
+roundPhylogram(vert.tree)
+```
+
+
+#4. Que son los roundPhylogram?
+Es un filograma pero con los bordes o las esquinas redondeadas
+
+#Los Arboles sin raiz, **unrooted** , ilustran la relacion de los nodos de las hojas sin hacer suposiciones sobre la ascendencia. No requieren que la raiz ancestral sea conocida o inferida. Los Arboles no enraizados siempre se pueden generar a partir de los enraizados simplemente omitiendo la raiz. Por el contrario, inferir la raiz de un Arbol sin raiz requiere algunos medios para identificar la ascendencia. Esto normalmente se hace incluyendo un grupo externo en los datos de entrada para que la raiz esta necesariamente entre el grupo externo y el resto de los taxones en el Arbol, o introduciendo suposiciones adicionales sobre las tasas de evolucion relativas en cada rama, como una aplicacion de la hipotesis del reloj molecular.
+
+
+
+```{r}
+plot(unroot(vert.tree),type="unrooted",no.margin=TRUE,lab4ut="axial",
+     edge.width=2)
+
+```
+
+
+
+#El objeto creado en la memoria cuando simulamos o estimamos una filogenia, o leemos una de un archivo de entrada, es una lista de la clase "filo".
+
+#Recuerde, una lista es solo un tipo de objeto personalizable que puede combinar diferentes objetos de diferentes tipos. Por ejemplo, una lista puede tener un vector de numeros reales (con el modo "numerico") como primer elemento; y luego un vector de cadenas (con el modo "caracter") como su segundo elemento; y asi. Asignar nuestro Arbol con una clase especial, "phylo", es solo una forma conveniente de indicarle a las funciones especiales en R como tratar ese objeto.
+
+#Un objeto de la clase "phylo" tiene al menos tres partes. Estos normalmente estan ocultos, por ejemplo, simplemente escribir el nombre de su objeto "phylo" no le da la estructura en la memoria, como lo hace para muchos objetos R:
+
+
+```{r}
+vert.tree
+
+str(vert.tree)
+```
+
+#Para comprender la estructura de un objeto "filo" un poco mas claramente, leamos una filogenia mucho mas simple, y luego descomponga en sus componentes esenciales:
+
+```{r}
+tree<-read.tree(text="(((A,B),(C,D)),E);")
+plotTree(tree,offset=1)
+tiplabels()
+nodelabels()
+```
+
+
+### Escribir y leer Arboles filogeneticos
+#Podemos escribir y leer Arboles facilmente desde y hacia archivos, por ejemplo, con el archivo: **alo.tre**
+
+
+#5. Que animal se esta analizando en la siguiente figura?
+# El animal de la siguiente figura son los anolis que son una especie de lagartos en America parecidos a las iguanas y con una como bolsa debajo del cuello
+```{r}
+
+anolis.tree<-read.tree(file="alo.tre")
+anolis.tree
+
+plotTree(anolis.tree,ftype="i",fsize=0.6,lwd=1)
+```
+
+
+```{r}
+plot(anolis.tree,type="fan")
+
+```
+
+
+# Caso de estudio: 
+## **A Novel Coronavirus from Patients with Pneumonia in China, 2019**
+#"In December 2019, a cluster of patients with pneumonia of unknown cause was linked to a seafood wholesale market in Wuhan, China. A previously unknown betacoronavirus was discovered through the use of unbiased sequencing in samples from patients with pneumonia. Human airway epithelial cells were used to isolate a novel coronavirus, named 2019-nCoV, which formed a clade within the subgenus sarbecovirus, Orthocoronavirinae subfamily. Different from both MERS-CoV and SARS-CoV, 2019-nCoV is the seventh member of the family of coronaviruses that infect humans. Enhanced surveillance and further investigation are ongoing. (Funded by the National Key Research and Development Program of China and the National Major Project for Control and Prevention of Infectious Disease in China.)"
+
+#6. Carga la imagen 
+#El trabajo de [China Novel Coronavirus Investigating and Research Team](https://www.nejm.org/doi/full/10.1056/NEJMoa2001017) AQUI TIENEN QUE PODER VISUALIZAR LA IMAGEN EN RSTUDIO
+![phylogenetic_analysis of 2019-nCoV and other betacoronavirus genomes](2019NCov.png)
+
+
+
+#Cargaremos algunas secuencias de SARS-COV, MERS-COV y SARS-COV2 con algunas variantes:
+#. "AY508724" SARS coronavirus NS-1, complete genome
+#. "AY485277" SARS coronavirus Sino1-11, complete genome
+#. "AY390556" SARS coronavirus GZ02, complete genome
+#. "AY278489" SARS coronavirus GD01, complete genome
+#. "MN908947" Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1, complete genome
+#. "MN985325" Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoV/USA-WA1/2020, complete genome
+#. "MT292571" Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/ESP/Valencia12/2020, complete genome
+#. "JX869059" Human betacoronavirus 2c EMC/2012, complete genome
+
+#7. Aqui se estan cargando las secuencias o solamente se esta creando un vector?
+Se está creando un vector con los códigos del NCBI de los virus que vamos a trabajar
+```{r}
+virus <- c(  "JX869059", "AY508724", "MN908947", "AY390556", "AY278489", "MN985325","AY485277","MT292571")
+
+```
+
+
+#Carga las librerias necesarias y seleccional que all:
+
+#8. Por que para instalar los siguientes paquetes utilizamos Biocmanager?
+# Porque es un paquete para analisis estadístico y comprehensión de genómas
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("Biostrings")
+
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("DECIPHER")
+
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("ggtree")
+
+library(Biostrings)
+library(seqinr)
+library(adegenet)
+library(ape)
+library(ggtree)
+library(DECIPHER)
+library(viridis)
+library(ggplot2)
+```
+
+#Obten las secuencias, aqui esta obteniendo las secuencias del NCBI.
+
+#9 que significa aquí (virus)?
+Es el vector que almacena los códigos NCBI entonces esta accediendo a ese string para luego buscarlo
+```{r}
+virus_sequences <- read.GenBank(virus)
+
+#Estructura del DNABin:
+str(virus_sequences)
+attributes(virus_sequences)
+names(virus_sequences)
+attr(virus_sequences, "species")
+
+#Concentraremos en un archivo todas las secuencias:
+write.dna(virus_sequences,  file ="virus_seqs.fasta", format = "fasta", append =
+            FALSE, nbcol = 6, colsep = " ", colw = 10)
+
+#Cargamos la secuencias:
+virus_seq_not_align <- readDNAStringSet("virus_seqs.fasta", format = "fasta")
+virus_seq_not_align
+```
+
+
+
+#Alineamiento de las secuencias:
+#Un alineamiento multiple de secuencias es un alineamiento de mas de dos secuencias. Estas secuencias, como en el caso de los alieamientos por parejas pueden ser ADN, ARN o proteína.
+#Las aplicaciones mas habituales de los alineamientos multiples son:
+#la reconstruccion filogenetica,
+#el analisis estructural de proteinas,
+# la busqueda de dominios conservados y
+#la buqueda de regiones conservadas en promotores.
+#En todos los casos los algoritmos de alineamiento multiple asumen que las secuencias que estamos alineando descienden de un antepasado comUn y lo que intentamos hacer es alinear las posiciones homOlogas.
+
+#10. Sube esta imagen
+![Alineamiento](alineamiento.gif)
+
+
+```{r}
+virus_seq_not_align <- OrientNucleotides(virus_seq_not_align)
+
+virus_seq_align <- AlignSeqs(virus_seq_not_align)
+```
+
+#Visualizar el resultado del alineamiento:
+```{r}
+BrowseSeqs(virus_seq_align, highlight=0)
+```
+
+
+#11. Tomale una captura hasta la longitud 240 de la imagen que te 
+#va a resultar del browser anterior
+#Sube la imagen aquí. 
+![Imagen de browser](imagenBrowser.png)
+
+#12. Del alineamiento del browser (Anterior) que podrías interpretar? Que secuencias se parecen más? 
+Del alinemiento anterior se puede interpretar que todas las cadenas tienen partes en común.
+Las dos secuencias que más se parecen son AY390556 y AY485277 que al menos hasta el 240, son prácticamente idénticas
+
+
+```{r}
+writeXStringSet(virus_seq_align, file="virus_seq_align.fasta")
+
+#Obtener el nuevo archivo:
+
+virus_aligned <- read.alignment("virus_seq_align.fasta", format = "fasta")
+
+#Crear una matriz de distancia:
+
+matriz_distancia <- dist.alignment(virus_aligned, matrix = "similarity")
+
+#Visualiza la matriz de distancia: donde sombras mAs oscuras de gris significan una mayor distancia
+
+temp <- as.data.frame(as.matrix(matriz_distancia))
+table.paint(temp, cleg=0, clabel.row=.5, clabel.col=.5) + scale_color_viridis()
+
+#Creacion de un arbol con el paquete ape:
+
+virus_tree <- nj(matriz_distancia)
+class(virus_tree) 
+
+virus_tree <- ladderize(virus_tree)
+
+#Plot del Arbol:
+
+plot(virus_tree, cex = 0.6)
+title("A Novel Coronavirus from Patients with Pneumonia in China, 2019")
+```
+
+#13. Del plot anterior que podrías interpretar?
+Del plot anterior se pueden intuir varias cosas. Primero que nada hay tres secuencias prácticamente iguales y de ellas dos son aún más similares. Una cuarta secuencia que procede del mismo lugar que las tres mencionadas anteriormente. Después hay dos pares que tienen amplias similitudes y que a su vez vienen del mismo lugar de las cuatro series mencionadas anteriormente.
+
+
+```{r}
+#Plot utilizando ggtree que es parte de ggplot:
+ggtree(virus_tree)
+ggtree(virus_tree, layout="slanted") 
+ggtree(virus_tree, layout="circular")
+ggtree(virus_tree, layout="fan", open.angle=120)
+ggtree(virus_tree, layout="equal_angle")
+ggtree(virus_tree, branch.length='none')
+ggtree(virus_tree, branch.length='none', layout='circular')
+ggtree(virus_tree ) + geom_tiplab()
+
+#Visualiza el alineamiento de las secuencias:
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("ggmsa")
+
+library(ggmsa)
+ggmsa(virus_seq_not_align, 320, 360, color = "Chemistry_AA")
+
+#Combina el Arbol filogenetico con el alineamiento de las secuencias:
+
+plot_virus <- ggtree(virus_tree ) + geom_tiplab()
+
+data = tidy_msa(virus_seq_not_align, 164, 213)
+plot_virus + geom_facet(geom = geom_msa, data = data,  panel = 'msa', color = "Chemistry_AA") +
+  xlim_tree(1)
+
+```
+
+
+
+
+
+
+#14. Citar paquetes de R
+
+# como se citan? Citar los paquetes, modulos y softwares que usaste para tu analisis es importante, tanto desde una perspectiva de reproducibilidad (las rutinas estadisticas a menudo se implementan de diferentes maneras por diferentes paquetes, lo que podri­a explicar ligeras discrepancias en los resultados. Decir "Hice esto usando esta funcon de ese paquete, version 1.2.3, esto es una forma de protegerse al ser claro acerca de lo que ha encontrado haciendo lo que ha hecho), pero tambien de reconocer el trabajo y el tiempo que las personas dedicaron a crear herramientas para otros (a veces a expensas de su investigacin propia).
+
+
+```{r}
+citation("Rcpp")
+citation("maps")
+citation("ape")
+citation("phangorn")
+citation("phytools")
+citation("geiger")
+citation("png")
+citation("Biostrings")
+citation("seqinr")
+citation("adegenet")
+citation("ape")
+citation("ggtree")
+citation("DECIPHER")
+citation("viridis")
+citation("ggplot2")
+citation("ggmsa")
+citation("dplyr")
+
+
+```
+
+
+#15. Generame una conclusión en relación a tus resultado. Al método de alineamiento, por que consideras que es importante realizar alineamientos de las secuencias?
+
+Considero que es de suma importancia usar el método de de alineamiento por muchas razones. Primero que nada en cuanto a la medicina como el análisis de virus es muy importante saber que es lo que está mutando entre cada virus tanto para la generación de la vacuna como también para la generación de los primers que sirven para detectar las enfermedades. También para biología es muy imporante para encontrar genes homólogos como el de hemoglobina y encontrar patrones de conservación. Para realizar estudios poblacionales e inferir el proceso evolutivo de la vida. Determinar la función de ciertos gener identificados, y también la función de proteínas encontradas. Entre muchas otras más...
+

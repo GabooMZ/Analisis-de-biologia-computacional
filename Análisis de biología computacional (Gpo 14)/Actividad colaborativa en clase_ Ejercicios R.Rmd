@@ -1,0 +1,170 @@
+---
+title: "Actividad colaborativa en clase | Ejercicios R"
+author: "Gabriel M,Guillermo Villegas,Adara Pulido,Julieta Arteaga, Gustavo Ortiz"
+date: "2023-04-13"
+output:
+  html_document: default
+  pdf_document: default
+---
+```{r}
+library('stringr')
+library('stringi')
+```
+
+1. Escribe una función que genere una secuencia aleatoria de DNA de tamaño “n”.
+```{r}
+crearsecuenciaAdn <- function(n){
+  secuencia <- sample(c('A','T','G','C'), n, replace = TRUE)
+  vec_secuencia <- c(secuencia)
+  return(c(paste(secuencia, collapse = ''),n))
+}
+#TAMAÑO DE SECUENCIA!!
+x <- crearsecuenciaAdn(30)
+x[2]
+```
+2. Codifica una función que calcula el tamaño de una secuencia de DNA.
+```{r}
+#Es el segundo valor de la lista que regresa la funcion de crear Adn
+x[2]
+
+```
+3. Crea una función que recibe una secuencia de DNA e imprime el porcentaje de cada base
+en la secuencia
+```{r}
+#?str_count
+x[1]
+porcentajes <- function(Adn){
+  return(c(str_count(Adn, 'A')/nchar(Adn)  ,str_count(Adn, 'T')/nchar(Adn) ,str_count(Adn, 'C')/nchar(Adn),str_count(Adn, 'G')/nchar(Adn)))
+}
+prc <- porcentajes(x[1])
+paste("Porcentaje de A's en la cadena:", prc[1] *100)
+paste("Porcentaje de T's en la cadena:", prc[2] *100)
+paste("Porcentaje de C's en la cadena:", prc[3] *100)
+paste("Porcentaje de G's en la cadena:", prc[4] *100)
+
+```
+4. Programa una función que transcribe DNA a RNA, usa la siguiente tabla:
+```{r}
+x[1]
+AdnToRna <- function(Adn){
+  return(str_replace_all(Adn,'T','U'))
+}
+Rna <- AdnToRna(x[1])
+Rna
+```
+5. Crea una función que traduce una secuencia de RNA a una secuencia de proteínas.
+```{r}
+Triple <- c("UUU","UUC","UUA","UUG","CUU","CUC","CUA","CUG","AUU","AUC","AUA","AUG","GUU","GUC","GUA","GUG","UCU","UCC","UCA","UCG","CCU","CCC","CCA","CCG","ACU","ACC","ACA","ACG","GCU","GCC","GCA","GCG","UAU","UAC","UAA","UAG","CAU","CAC","CAA","CAG","AAU","AAC","AAA","AAG","GAU","GAC","GAA","GAG","UGU","UGC","UGA","UGG","CGU","CGC","CGA","CGG","AGU","AGC","AGA","AGG","GGU","GGC","GGA","GGG")
+protein <- c("Phe","Phe","Leu","Leu","Leu","Leu","Leu","Leu","Ile","Ile","Ile","Met","Val","Val","Val","Val","Ser","Ser","Ser","Ser","Pro","Pro","Pro","Pro","Thr","Thr","Thr","Thr","Ala","Ala","Ala","Ala","Tyr","Tyr","Stop","Stop","His","His","Gln","Gln","Asn","Asn","Lys","Lys","Asp","Asp","Glu","Glu","Cys","Cys","Stop","Trp","Arg","Arg","Arg","Arg","Ser","Ser","Arg","Arg","Gly","Gly","Gly","Gly")
+
+#vector <- seq(from = 1, to = x[2], by = 3)
+#vector
+#strand <- str_sub(Rna, vector, vector + 2)
+#strand
+
+
+RnatoProtein <- function(Rna){
+  vector <- seq(from = 1, to = nchar(Rna), by = 3)
+  strand <- str_sub(Rna, vector, vector + 2)
+  k <- match(strand,Triple)
+  return(paste(protein[k], collapse = ''))
+}
+RnatoProtein(Rna)
+```
+
+6.Escribe una función que recibe una hebra directa y regresa la hebra inversa.
+```{r}
+dnaToInverse <-function (dna){
+  inverseDna <-''
+  for (base in 1:nchar(dna)){
+    if (substr(dna, base, base)== 'T'){
+      inverseDna = paste(inverseDna,'C',sep = '')
+    }
+    else if (substr(dna, base, base)== 'C'){
+      inverseDna = paste(inverseDna,'T', sep = '')   
+    }
+   else if (substr(dna, base, base)== 'G'){
+      inverseDna = paste(inverseDna,'A', sep='')
+    }
+   else if (substr(dna, base, base)== 'A'){
+      inverseDna = paste(inverseDna,'G', sep = '')   
+    }
+  }
+  return (inverseDna)
+}
+
+dnaToInverse(x[1])
+
+```
+ 
+7. Escribe una función qué recibe una hebra directa y obtiene la hebra complementaria
+```{r}
+dnaToComplementary <-function (dna){
+  complementaryDna <-''
+  for (base in 1:nchar(dna)){
+    if (substr(dna, base, base)== 'T'){
+      complementaryDna = paste(complementaryDna,'A',sep = '')
+    }
+    else if (substr(dna, base, base)== 'C'){
+      complementaryDna = paste(complementaryDna,'G', sep = '')   
+    }
+   else if (substr(dna, base, base)== 'G'){
+      complementaryDna = paste(complementaryDna,'C', sep='')
+    }
+   else if (substr(dna, base, base)== 'A'){
+      complementaryDna = paste(complementaryDna,'T', sep = '')   
+    }
+  }
+  return (complementaryDna)
+}
+x[1]
+complementaryDna <- dnaToComplementary(x[1])
+complementaryDna
+
+```
+8. Si escribimos la secuencia de la hebra complementaria en sentido inverso (5'→3') se obtiene
+la complementaria inversa (reverse-complement):
+  a. Hebra complementaria: 3'-ACGCTATG-5'
+  b. Hebra complementaria inversa: 5'-GTATCGCA-3'
+Escribe la función en R para obtener la hebra complementaria inversa, desde una hebra
+complementaria.
+```{r}
+reverse_complement <- stri_reverse(complementaryDna)
+reverse_complement
+```
+9. Prueba cada una de las funciones y recuerda que las secuencias pueden contener caracteres
+especiales donde aparte de ATGC, en ADN, y AUGC, en ARN, pudimos ver algunos guiones
+(omitidos) y N (desconocido) nucleótido.
+```{r}
+Adn <- 'ATGCTTGACGCTCAAACCATCGCTACAGTAAAAGCCACCATCCCTTTACTGGTGGAAACGGGGCCAAAGT
+TAACCGCCCATTTCTACGACCGTATGTTTACTCATAACCCAGAACTCAAAGAAATTTTTAACATGAGTAA
+CCAGCGTAATGGCGATCAACGTGAAGCCCTGTTTAACGCTATTGCCGCCTACGCCAGTAATATTGAAAAC
+CTGCCTGCGCTGCTGCCAGCGGTAGAAAAAATCGCGCAGAAGCACACCAGCTTCCAGATCAAACCGGAAC
+AGTACAACATCGTCGGTGAACACCTGTTGGCAACGCTGGACGAAATGTTCAGCCCGGGGCAGGAAGTGCT
+GGACGCGTGGGGTAAAGCCTATGGTGTACTGGCTAATGTATTTATCAATCGCGAGGCGGAAATCTATAAC
+GAAAACGCCAGCAAAGCCGGTGGTTGGGAAGGTACTCGCGATTTCCGCATTGTGGCTAAAACACCGCGCA
+GCGCGCTTATCACCAGCTTCGAACTGGAGCCGGTCGACGGTGGCGCAGTGGCAGAATACCGTCCGGGGCA
+ATATCTCGGCGTCTGGCTGAAGCCGGAAGGTTTCCCACATCAGGAAATTCGTCAGTACTCTTTGACTCGC
+AAACCGGATGGCAAAGGCTATCGTATTGCGGTGAAACGCGAAGAGGGTGGGCAGGTATCCAACTGGTTGC
+ACAATCACGCCAATGTTGGCGATGTCGTGAAACTGGTCGCTCCGGCAGGTGATTTCTTTATGGCTGTCGC
+AGATGACACACCAGTGACGTTAATCTCTGCCGGTGTTGGTCAAACGCCAATGCTGGCAATGCTCGACACG
+CTGGCAAAAGCAGGCCACACAGCACAAGTGAACTGGTTCCATGCGGCAGAAAATGGCGATGTTCACGCCT
+TTGCCGATGAAGTTAAGGAACTGGGGCAGTCACTGCCGCGCTTTACCGCGCACACCTGGTATCGTCAGCC
+GAGCGAAGCCGATCGCGCTAAAGGTCAGTTTGATAGCGAAGGTCTGATGGATTTGAGCAAACTGGAAGGT
+GCGTTCAGCGATCCGACAATGCAGTTCTATCTCTGCGGCCCGGTTGGCTTCATGCAGTTTACCGCGAAAC
+AGTTAGTGGATCTGGGCGTGAAGCAGGAAAACATTCATTACGAATGCTTTGGCCCGCATAAGGTGCTGTA'
+Adn
+#prc <- porcentajes(Adn)
+#paste("Porcentaje de A's en la cadena:", prc[1] *100)
+#paste("Porcentaje de T's en la cadena:", prc[2] *100)
+#paste("Porcentaje de C's en la cadena:", prc[3] *100)
+#paste("Porcentaje de G's en la cadena:", prc[4] *100)
+Rna <- AdnToRna(Adn)
+Rna
+ProteinRna <- RnatoProtein(Rna)
+ProteinRna
+#Inversa <- dnaToInverse(Adn)
+#Inversa
+#complementaryDna <- dnaToComplementary(Adn)
+#complementaryDna
+```

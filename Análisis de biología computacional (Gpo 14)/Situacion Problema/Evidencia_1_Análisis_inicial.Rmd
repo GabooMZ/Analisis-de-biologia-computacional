@@ -1,0 +1,172 @@
+---
+title: "Evidencia 1 Parte 2"
+author: "Julieta Arteaga, Guillermo Villegas, Gabriel Melendez, Adara Pulido,"
+date: "2023-04-26"
+output:
+  html_document: default
+  pdf_document: default
+---
+Parte 1. 
+
+Actualmente a nivel mundial  se han acumulado 764,474,387  de covid 19, de los cuales casi siete millones fallecieron, esto según datos de la Organización Mundial de la Salud (WHO, 2023). Para conocer información  de la epidemia de México y entidades estatales y municipales consultamos el portal del CONACYT dedicado a datos sobre los contagios de coronvarius. Hasta el 29 de abril de 2023 se contabilizaron 14,363 casos activos en toda la república, 340 solo en Jalisco de los cuales 72 residen en Zapopan. México ha sumado 7,587,172 contagios y 333,895 defunciones (Conacyt, 2023)
+El SARS-CoV-2 evolucionó en los años transcurridos de la pandemia en diferentes variantes, mutaciones, linajes, sublinajes y recombinaciones. En específico las variantes, que se definen como como un genoma viral que puede incluir más de una mutación no representan mayor problema hasta que logran cambiar los atributos y características de la infección. Por esto mismo, el HHS de E.E.U.U. creó el Grupo Interagencial por el SARS-CoV- 2 (SIG), un grupo compuesto de agentes de diferentes insituciones gubernamentales  del país con el fin de  coordinar sus esfuerzos para la clasificación de variantes emergentes y analizar sus implicaciones con las vacunas, tratamientos y diagnósticos. El SIG cuenta con 4 clasificaciones de variantes: de interés, preocupación, gran consecuencia y de monitoreo. El 29 de diciembre de 2020, fueron declaradas las tres primeras variantes, Alpha, Beta y Gamma. De primera instancia se consideraban variantes de preocupación, actualmente están clasificadas como variantes bajo monitoreo (Centro para el Control y la Prevención de Enfermedades, 2023). Las siguientes en ser identificadas fueron las variantes Delta, Epsilon, Eta, Iota, Kappa, ómicron, Zeta y Mu. Al día de hoy solo el ómicron recibe la clasificación de variante de preocupación, todas las demas están solo bajo monitoreo. El gobierno de México realiza informes sobre variantes de Covid-19 detectadas en el país de manera semanal, la información se puede consultar en los reportes de vigilancia genómica del virus SARS-CoV-2 en Méixco que realiza la Secretaríad de Salud y la Dirección Genral de Epidemiología. 
+
+Imagina que te encuentras en una situación similar a la de Li Wenliang, médico chino que intentó alertar sobre el brote de coronavirus en su país, pero fue detenido por las autoridades y obligado a retractarse, ¿qué harías en su caso? Selecciona un inciso:a) Lo reportas al centro de investigación o la universidad. b) Lo reportas a la prensa. c) Guardas la información. Elige y justifica tu respuesta.
+A como yo veo la situación, cualquiera de las dos primeras alternativas son poco efectivas en China donde la población está siendo constantemente vigilada, aparte de esto la c no es opción. Si estuviera en la situación de Li Wenliang, recopilaría toda la información que tenga y buscaría alguna de filtrarla a E.E.U.U. o algún otro país miembro del Consejo de Seguridad de las Naciones Unidas para poner a China en cuarentena y que pueda entrar la OMS a investigarla. Esto lograría con el uso de un VPN y de no ser posible buscaría a un hacker. 
+
+Conacyt (29 de abril de 2023). Covid-19 México, información general. Recuperado de https://datos.covid-19.conacyt.mx/
+
+Centro para el Control y la Prevención de Enfermedades (20 de marzo del 2023). Clasificaciones y definiciones de las variantes SARS-CoV-2. Recuperado de https://espanol.cdc.gov/coronavirus/2019-ncov/variants/variant-classifications.html
+World Health Organization. (24 de abril de 2023). WHO Coronavirus (COVID-19) Dashboard. Recuperado de https://covid19.who.int/.
+
+
+Parte 2.
+
+1. Obtén las secuencias de las variantes de SARS-CoV-2 desde el NCBI. o el buscador de virus del NCBI
+```{r}
+library('seqinr')
+library('ggplot2')
+library('viridis')
+library('plyr')
+
+SARS_SAf_fas <- read.fasta('Copia de sequence (south africa).fasta')
+SARS_Ame_fas <- read.fasta('Copia de sequences (America).fasta')
+SARS_Bra_fas <- read.fasta('Copia de sequences (brazil).fasta')
+SARS_Col_fas <- read.fasta('Copia de sequences (colombia).fasta')
+SARS_Fra_fas <- read.fasta('Copia de sequences (france).fasta')
+SARS_Ind_fas <- read.fasta('Copia de sequences (india).fasta')
+SARS_Ita_fas <- read.fasta('Copia de sequences (italy).fasta')
+SARS_Mex_fas <- read.fasta('Copia de sequences (mexico).fasta')
+SARS_Peru_fas <- read.fasta('Copia de sequences (peru).fasta')
+SARS_Roma_fas <- read.fasta('Copia de sequences (roma).fasta')
+SARS_Rus_fas <- read.fasta('Copia de sequences (russia).fasta')
+SARS_Spa_fas <- read.fasta('Copia de sequences (spain).fasta')
+SARS_UK_fas <- read.fasta('Copia de sequences (uk).fasta')
+SARS_Omicron_fas <- read.fasta('Copia de omicron.fasta')
+
+```
+2. Calcula la longitud de las secuencias de cada variante.
+```{r}
+tamaño <- function(seq){
+  return(nchar(seq))
+}
+
+
+# El tamaño de cada secuencia:
+tamaño(SARS_SAf_fas)
+tamaño(SARS_Ame_fas)
+tamaño(SARS_Bra_fas)
+tamaño(SARS_Col_fas)
+tamaño(SARS_Fra_fas)
+tamaño(SARS_Ind_fas)
+tamaño(SARS_Ita_fas)
+tamaño(SARS_Mex_fas)
+tamaño(SARS_Peru_fas)
+tamaño(SARS_Roma_fas)
+tamaño(SARS_Rus_fas)
+tamaño(SARS_Spa_fas)
+tamaño(SARS_UK_fas)
+tamaño(SARS_Omicron_fas)
+```
+3. Crea una gráfica donde compares las bases de ADN que componen a cada una de las variantes del virus.
+```{r}
+SARS_SAf <- as.data.frame(table(SARS_SAf_fas))
+rownames(SARS_SAf) <- c(1,2,3,4)
+colnames(SARS_SAf) <- c("Nucleotides","Freq")
+
+SARS_Ame <- as.data.frame(table(SARS_Ame_fas))
+rownames(SARS_Ame) <- c(1,2,3,4)
+colnames(SARS_Ame) <- c("Nucleotides","Freq")
+
+SARS_Bra <- as.data.frame(table(SARS_Bra_fas))
+rownames(SARS_Bra) <- c(1,2,3,4)
+colnames(SARS_Bra) <- c("Nucleotides","Freq")
+
+SARS_Col <- as.data.frame(table(SARS_Col_fas))
+rownames(SARS_Col) <- c(1,2,3,4)
+colnames(SARS_Col) <- c("Nucleotides","Freq")
+
+SARS_Fra <- as.data.frame(table(SARS_Fra_fas))
+rownames(SARS_Fra) <- c(1,2,3,4)
+colnames(SARS_Fra) <- c("Nucleotides","Freq")
+
+SARS_Ind <- as.data.frame(table(SARS_Ind_fas))
+rownames(SARS_Ind) <- c(1,2,3,4,5)
+colnames(SARS_Ind) <- c("Nucleotides","Freq")
+
+SARS_Ita <- as.data.frame(table(SARS_Ita_fas))
+rownames(SARS_Ita) <- c(1,2,3,4,5)
+colnames(SARS_Ita) <- c("Nucleotides","Freq")
+
+SARS_Mex <- as.data.frame(table(SARS_Mex_fas))
+rownames(SARS_Mex) <- c(1,2,3,4,5)
+colnames(SARS_Mex) <- c("Nucleotides","Freq")
+
+# SARS_Peru <- as.data.frame(table(SARS_Peru_fas))
+# rownames(SARS_Peru) <- c(1,2,3,4)
+# colnames(SARS_Peru) <- c("Nucleotides","Freq")
+
+SARS_Roma <- as.data.frame(table(SARS_Roma_fas))
+rownames(SARS_Roma) <- c(1,2,3,4)
+colnames(SARS_Roma) <- c("Nucleotides","Freq")
+
+SARS_Rus <- as.data.frame(table(SARS_Rus_fas))
+rownames(SARS_Rus) <- c(1,2,3,4)
+colnames(SARS_Rus) <- c("Nucleotides","Freq")
+
+SARS_Spa <- as.data.frame(table(SARS_Spa_fas))
+rownames(SARS_Spa) <- c(1,2,3,4)
+colnames(SARS_Spa) <- c("Nucleotides","Freq")
+
+SARS_UK <- as.data.frame(table(SARS_UK_fas))
+rownames(SARS_UK) <- c(1,2,3,4,5)
+colnames(SARS_UK) <- c("Nucleotides","Freq")
+
+SARS_Omicron <- as.data.frame(table(SARS_Omicron_fas))
+rownames(SARS_Omicron) <- c(1,2,3,4,5)
+colnames(SARS_Omicron) <- c("Nucleotides","Freq")
+
+vector <- list(SARS_SAf,SARS_Ame,SARS_Bra,SARS_Col,SARS_Fra,SARS_Ind,SARS_Ita,SARS_Mex,SARS_Roma,SARS_Rus,SARS_Spa,SARS_UK,SARS_Omicron)
+
+mm1 <- Reduce(function(x, y) merge(x, y,by = "Nucleotides", all=TRUE), vector)
+
+mm1
+
+colnames(mm1) <- c("Nucleotides","SARS_SAf","SARS_Ame","SARS_Bra","SARS_Col","SARS_Fra","SARS_Ind","SARS_Ita","SARS_Mex","SARS_Roma","SARS_Rus","SARS_Spa","SARS_UK","SARS_Omicron")
+
+mm1
+
+mm <- data.frame(x = mm1$Nucleotides, y = c(mm1$SARS_SAf,mm1$SARS_Ame,mm1$SARS_Bra,mm1$SARS_Col,mm1$SARS_Fra,mm1$SARS_Ind,mm1$SARS_Ita,mm1$SARS_Mex,mm1$SARS_Roma,mm1$SARS_Rus,mm1$SARS_Spa,mm1$SARS_UK,mm1$SARS_Omicron),
+                 group = c(rep("SARS_SAf", nrow(mm1)),rep("SARS_Ame", nrow(mm1)),rep("SARS_Bra", nrow(mm1)),rep("SARS_Col", nrow(mm1)),rep("SARS_Fra", nrow(mm1)),rep("SARS_Ind", nrow(mm1)),rep("SARS_Ita", nrow(mm1)),rep("SARS_Mex", nrow(mm1)),rep("SARS_Roma", nrow(mm1)),rep("SARS_Rus", nrow(mm1)),rep("SARS_Spa", nrow(mm1)),rep("SARS_UK", nrow(mm1)),rep("SARS_Omicron", nrow(mm1))))
+
+
+# ggplot(df_reshaped, aes(x, y, col = group)) +  geom_line()+ facet_grid(group ~ .)
+
+
+options(repr.plot.width =1, repr.plot.height =1)
+
+mm
+g1 <- ggplot(mm, aes(x,y, col =group,fill = group))
+g1 <- g1 + geom_bar(stat = "identity",color = "white") + theme_minimal()
+g1 <- g1 + geom_text(aes(label=y),size = 3, position = "stack",vjust= 1.6, hjust = 0.3)
+g1 <- g1 + scale_fill_viridis_d()
+g1 <- g1 + xlab("Nucleotide type") + ylab("Frequency") + ggtitle("Comparative Graph per variant")
+g1
+
+n <- subset(mm, x=="n")
+g2 <- ggplot(n, aes(x,y, col = group,fill = group))
+g2 <- g2 + geom_bar(stat = "identity",color = "white",position="dodge") + theme_minimal()
+g2 <- g2 + geom_text(aes(label=y), position = position_dodge(0.9),vjust= 1.6,color = "black",size = 3)
+g2 <- g2 + scale_fill_viridis_d()
+g2 <- g2 + xlab("Nucleotide type") + ylab("Frequency") + ggtitle("Comparative Graph per variant n molecule")
+g2
+```
+4. ¿Cuál es el %GC de cada variante?
+```{r}
+
+gc1 <- subset(mm1, x==)
+gc1
+
+
+```
+

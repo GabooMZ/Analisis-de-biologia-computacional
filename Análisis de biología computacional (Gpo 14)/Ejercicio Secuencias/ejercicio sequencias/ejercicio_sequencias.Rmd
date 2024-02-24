@@ -1,0 +1,139 @@
+---
+title: "Sequencias ADN"
+author: "Memo"
+date: "2023-04-23"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+librerías y sequencias
+```{r}
+library('seqinr')
+library('ggplot2')
+chik <- read.fasta('chik.fasta')
+covid <- read.fasta('covid.fasta')
+dengue <- read.fasta('dengue.fasta')
+h1n1 <- read.fasta('h1n1.fasta')
+mers <- read.fasta('mers.fasta')
+zika <- read.fasta('zika.fasta')
+
+```
+Función para econtrar datos
+```{r}
+nucleotide_data <- function(dna){
+  print('Tamaño de secuencia')
+  print(length(dna[[1]]))
+  print('Composición de nucleótidos')
+  print(count(dna[[1]],1))
+  print('Cantidad de GC en la secuencia')
+  count(dna[[1]],2)['gc']
+}
+
+```
+
+Chikungunya
+```{r}
+nucleotide_data(chik)
+```
+zika
+```{r}
+nucleotide_data(zika)
+```
+covid
+```{r}
+nucleotide_data(covid)
+```
+H1N1
+```{r}
+nucleotide_data(h1n1)
+```
+mers
+```{r}
+nucleotide_data(mers)
+```
+dengue
+```{r}
+nucleotide_data(dengue)
+```
+Barplot
+```{r}
+compara <- function(seq1,seq2,seq3,seq4, seq5, seq6){
+  par(mfrow=c(1,6))
+  barplot(table(seq1),col = 1:4)
+  barplot(table(seq2),col = 1:4)
+  barplot(table(seq3),col = 1:4)
+  barplot(table(seq4),col = 1:4)
+  barplot(table(seq5),col = 1:4)
+  barplot(table(seq6),col = 1:4)
+}
+
+compara(zika, dengue, covid, mers, chik, h1n1)
+
+zika_df <- as.data.frame(table(zika))
+dengue_df <- as.data.frame(table(dengue))
+covid_df <- as.data.frame(table(covid))
+mers_df <- as.data.frame(table(mers))
+chik_df <- as.data.frame(table(chik))
+h1n1_df <- as.data.frame(table(h1n1))
+
+par(mfrow=c(1,6))
+ggplot(data= zika_df, aes(x=NC_035889.1, y=Freq, fill= NC_035889.1))+
+   geom_col()+
+   geom_text(aes(label = Freq), vjust = 0)+
+   ggtitle('Zika')+
+   xlab('base')+
+   ylab('frequencia')+
+   theme(
+   plot.title =  element_text(color="lightblue", size=14, face="bold.italic"))
+
+ggplot(data= dengue_df, aes(x=MZ310562.1, y=Freq, fill= MZ310562.1))+
+   geom_col()+
+   geom_text(aes(label = Freq), vjust = 0)+
+   ggtitle('dengue')+
+   xlab('base')+
+   ylab('frequencia')+
+   theme(
+   plot.title =  element_text(color="lightgreen", size=14, face="bold.italic"))
+
+ggplot(data= covid_df, aes(x=NC_045512.2, y=Freq, fill= NC_045512.2))+
+   geom_col()+
+   geom_text(aes(label = Freq), vjust = 0)+
+   ggtitle('covid')+
+   xlab('base')+
+   ylab('frequencia')+
+   theme(
+   plot.title =  element_text(color="pink", size=14, face="bold.italic"))
+
+ggplot(data= mers_df, aes(x=NC_019843.3, y=Freq, fill= NC_019843.3))+
+   geom_col()+
+   geom_text(aes(label = Freq), vjust = 0)+
+   ggtitle('Mers')+
+   xlab('base')+
+   ylab('frequencia')+
+   theme(
+   plot.title =  element_text(color="yellow", size=14, face="bold.italic"))
+
+ggplot(data= chik_df, aes(x=EU037962.1, y=Freq, fill= EU037962.1))+
+   geom_col()+
+   geom_text(aes(label = Freq), vjust = 0)+
+   ggtitle('Chikungunya')+
+   xlab('base')+
+   ylab('frequencia')+
+   theme(
+   plot.title =  element_text(color="purple", size=14, face="bold.italic"))
+
+ggplot(data= h1n1_df, aes(x=CY064707.1, y=Freq, fill= CY064707.1))+
+   geom_col()+
+   geom_text(aes(label = Freq), vjust = 0)+
+   ggtitle('H1N1')+
+   xlab('base')+
+   ylab('frequencia')+
+   theme(
+   plot.title =  element_text(color="orange", size=14, face="bold.italic"))
+
+```
+
+
+
+

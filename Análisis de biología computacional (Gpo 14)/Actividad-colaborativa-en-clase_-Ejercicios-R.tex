@@ -1,0 +1,523 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Actividad colaborativa en clase \textbar{} Ejercicios R},
+  pdfauthor={Gabriel M},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Actividad colaborativa en clase \textbar{} Ejercicios R}
+\author{Gabriel M}
+\date{2023-04-13}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}stringr\textquotesingle{}}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}stringi\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Escribe una función que genere una secuencia aleatoria de DNA de
+  tamaño ``n''.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crearsecuenciaAdn }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n)\{}
+\NormalTok{  secuencia }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{), n, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  vec\_secuencia }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(secuencia)}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{paste}\NormalTok{(secuencia, }\AttributeTok{collapse =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{),n))}
+\NormalTok{\}}
+\CommentTok{\#TAMAÑO DE SECUENCIA!!}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{crearsecuenciaAdn}\NormalTok{(}\DecValTok{30}\NormalTok{)}
+\NormalTok{x[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "30"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Codifica una función que calcula el tamaño de una secuencia de DNA.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Es el segundo valor de la lista que regresa la funcion de crear Adn}
+\NormalTok{x[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "30"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Crea una función que recibe una secuencia de DNA e imprime el
+  porcentaje de cada base en la secuencia
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#?str\_count}
+\NormalTok{x[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GTGCACAGTCCCTATCCATGTTTAAAGGCT"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{porcentajes }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(Adn)\{}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{str\_count}\NormalTok{(Adn, }\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{nchar}\NormalTok{(Adn)  ,}\FunctionTok{str\_count}\NormalTok{(Adn, }\StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{nchar}\NormalTok{(Adn) ,}\FunctionTok{str\_count}\NormalTok{(Adn, }\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{nchar}\NormalTok{(Adn),}\FunctionTok{str\_count}\NormalTok{(Adn, }\StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{nchar}\NormalTok{(Adn)))}
+\NormalTok{\}}
+\NormalTok{prc }\OtherTok{\textless{}{-}} \FunctionTok{porcentajes}\NormalTok{(x[}\DecValTok{1}\NormalTok{])}
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de A\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de A's en la cadena: 23.3333333333333"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de T\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de T's en la cadena: 30"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de C\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de C's en la cadena: 26.6666666666667"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de G\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de G's en la cadena: 20"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Programa una función que transcribe DNA a RNA, usa la siguiente tabla:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GTGCACAGTCCCTATCCATGTTTAAAGGCT"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AdnToRna }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(Adn)\{}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{str\_replace\_all}\NormalTok{(Adn,}\StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}U\textquotesingle{}}\NormalTok{))}
+\NormalTok{\}}
+\NormalTok{Rna }\OtherTok{\textless{}{-}} \FunctionTok{AdnToRna}\NormalTok{(x[}\DecValTok{1}\NormalTok{])}
+\NormalTok{Rna}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GUGCACAGUCCCUAUCCAUGUUUAAAGGCU"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Crea una función que traduce una secuencia de RNA a una secuencia de
+  proteínas.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Triple }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"UUU"}\NormalTok{,}\StringTok{"UUC"}\NormalTok{,}\StringTok{"UUA"}\NormalTok{,}\StringTok{"UUG"}\NormalTok{,}\StringTok{"CUU"}\NormalTok{,}\StringTok{"CUC"}\NormalTok{,}\StringTok{"CUA"}\NormalTok{,}\StringTok{"CUG"}\NormalTok{,}\StringTok{"AUU"}\NormalTok{,}\StringTok{"AUC"}\NormalTok{,}\StringTok{"AUA"}\NormalTok{,}\StringTok{"AUG"}\NormalTok{,}\StringTok{"GUU"}\NormalTok{,}\StringTok{"GUC"}\NormalTok{,}\StringTok{"GUA"}\NormalTok{,}\StringTok{"GUG"}\NormalTok{,}\StringTok{"UCU"}\NormalTok{,}\StringTok{"UCC"}\NormalTok{,}\StringTok{"UCA"}\NormalTok{,}\StringTok{"UCG"}\NormalTok{,}\StringTok{"CCU"}\NormalTok{,}\StringTok{"CCC"}\NormalTok{,}\StringTok{"CCA"}\NormalTok{,}\StringTok{"CCG"}\NormalTok{,}\StringTok{"ACU"}\NormalTok{,}\StringTok{"ACC"}\NormalTok{,}\StringTok{"ACA"}\NormalTok{,}\StringTok{"ACG"}\NormalTok{,}\StringTok{"GCU"}\NormalTok{,}\StringTok{"GCC"}\NormalTok{,}\StringTok{"GCA"}\NormalTok{,}\StringTok{"GCG"}\NormalTok{,}\StringTok{"UAU"}\NormalTok{,}\StringTok{"UAC"}\NormalTok{,}\StringTok{"UAA"}\NormalTok{,}\StringTok{"UAG"}\NormalTok{,}\StringTok{"CAU"}\NormalTok{,}\StringTok{"CAC"}\NormalTok{,}\StringTok{"CAA"}\NormalTok{,}\StringTok{"CAG"}\NormalTok{,}\StringTok{"AAU"}\NormalTok{,}\StringTok{"AAC"}\NormalTok{,}\StringTok{"AAA"}\NormalTok{,}\StringTok{"AAG"}\NormalTok{,}\StringTok{"GAU"}\NormalTok{,}\StringTok{"GAC"}\NormalTok{,}\StringTok{"GAA"}\NormalTok{,}\StringTok{"GAG"}\NormalTok{,}\StringTok{"UGU"}\NormalTok{,}\StringTok{"UGC"}\NormalTok{,}\StringTok{"UGA"}\NormalTok{,}\StringTok{"UGG"}\NormalTok{,}\StringTok{"CGU"}\NormalTok{,}\StringTok{"CGC"}\NormalTok{,}\StringTok{"CGA"}\NormalTok{,}\StringTok{"CGG"}\NormalTok{,}\StringTok{"AGU"}\NormalTok{,}\StringTok{"AGC"}\NormalTok{,}\StringTok{"AGA"}\NormalTok{,}\StringTok{"AGG"}\NormalTok{,}\StringTok{"GGU"}\NormalTok{,}\StringTok{"GGC"}\NormalTok{,}\StringTok{"GGA"}\NormalTok{,}\StringTok{"GGG"}\NormalTok{)}
+\NormalTok{protein }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Phe"}\NormalTok{,}\StringTok{"Phe"}\NormalTok{,}\StringTok{"Leu"}\NormalTok{,}\StringTok{"Leu"}\NormalTok{,}\StringTok{"Leu"}\NormalTok{,}\StringTok{"Leu"}\NormalTok{,}\StringTok{"Leu"}\NormalTok{,}\StringTok{"Leu"}\NormalTok{,}\StringTok{"Ile"}\NormalTok{,}\StringTok{"Ile"}\NormalTok{,}\StringTok{"Ile"}\NormalTok{,}\StringTok{"Met"}\NormalTok{,}\StringTok{"Val"}\NormalTok{,}\StringTok{"Val"}\NormalTok{,}\StringTok{"Val"}\NormalTok{,}\StringTok{"Val"}\NormalTok{,}\StringTok{"Ser"}\NormalTok{,}\StringTok{"Ser"}\NormalTok{,}\StringTok{"Ser"}\NormalTok{,}\StringTok{"Ser"}\NormalTok{,}\StringTok{"Pro"}\NormalTok{,}\StringTok{"Pro"}\NormalTok{,}\StringTok{"Pro"}\NormalTok{,}\StringTok{"Pro"}\NormalTok{,}\StringTok{"Thr"}\NormalTok{,}\StringTok{"Thr"}\NormalTok{,}\StringTok{"Thr"}\NormalTok{,}\StringTok{"Thr"}\NormalTok{,}\StringTok{"Ala"}\NormalTok{,}\StringTok{"Ala"}\NormalTok{,}\StringTok{"Ala"}\NormalTok{,}\StringTok{"Ala"}\NormalTok{,}\StringTok{"Tyr"}\NormalTok{,}\StringTok{"Tyr"}\NormalTok{,}\StringTok{"Stop"}\NormalTok{,}\StringTok{"Stop"}\NormalTok{,}\StringTok{"His"}\NormalTok{,}\StringTok{"His"}\NormalTok{,}\StringTok{"Gln"}\NormalTok{,}\StringTok{"Gln"}\NormalTok{,}\StringTok{"Asn"}\NormalTok{,}\StringTok{"Asn"}\NormalTok{,}\StringTok{"Lys"}\NormalTok{,}\StringTok{"Lys"}\NormalTok{,}\StringTok{"Asp"}\NormalTok{,}\StringTok{"Asp"}\NormalTok{,}\StringTok{"Glu"}\NormalTok{,}\StringTok{"Glu"}\NormalTok{,}\StringTok{"Cys"}\NormalTok{,}\StringTok{"Cys"}\NormalTok{,}\StringTok{"Stop"}\NormalTok{,}\StringTok{"Trp"}\NormalTok{,}\StringTok{"Arg"}\NormalTok{,}\StringTok{"Arg"}\NormalTok{,}\StringTok{"Arg"}\NormalTok{,}\StringTok{"Arg"}\NormalTok{,}\StringTok{"Ser"}\NormalTok{,}\StringTok{"Ser"}\NormalTok{,}\StringTok{"Arg"}\NormalTok{,}\StringTok{"Arg"}\NormalTok{,}\StringTok{"Gly"}\NormalTok{,}\StringTok{"Gly"}\NormalTok{,}\StringTok{"Gly"}\NormalTok{,}\StringTok{"Gly"}\NormalTok{)}
+
+\CommentTok{\#vector \textless{}{-} seq(from = 1, to = x[2], by = 3)}
+\CommentTok{\#vector}
+\CommentTok{\#strand \textless{}{-} str\_sub(Rna, vector, vector + 2)}
+\CommentTok{\#strand}
+
+
+\NormalTok{RnatoProtein }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(Rna)\{}
+\NormalTok{  vector }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \DecValTok{1}\NormalTok{, }\AttributeTok{to =}\NormalTok{ x[}\DecValTok{2}\NormalTok{], }\AttributeTok{by =} \DecValTok{3}\NormalTok{)}
+\NormalTok{  strand }\OtherTok{\textless{}{-}} \FunctionTok{str\_sub}\NormalTok{(Rna, vector, vector }\SpecialCharTok{+} \DecValTok{2}\NormalTok{)}
+\NormalTok{  k }\OtherTok{\textless{}{-}} \FunctionTok{match}\NormalTok{(strand,Triple)}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{paste}\NormalTok{(protein[k], }\AttributeTok{collapse =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}
+\NormalTok{\}}
+\FunctionTok{RnatoProtein}\NormalTok{(Rna)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "ValHisSerProTyrProCysLeuLysAla"
+\end{verbatim}
+
+6.Escribe una función que recibe una hebra directa y regresa la hebra
+inversa.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnaToInverse }\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{ (dna)\{}
+\NormalTok{  inverseDna }\OtherTok{\textless{}{-}}\StringTok{\textquotesingle{}\textquotesingle{}}
+  \ControlFlowTok{for}\NormalTok{ (base }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nchar}\NormalTok{(dna))\{}
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      inverseDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(inverseDna,}\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{,}\AttributeTok{sep =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}
+\NormalTok{    \}}
+    \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      inverseDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(inverseDna,}\StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)   }
+\NormalTok{    \}}
+   \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      inverseDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(inverseDna,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\AttributeTok{sep=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}
+\NormalTok{    \}}
+   \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      inverseDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(inverseDna,}\StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)   }
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{ (inverseDna)}
+\NormalTok{\}}
+
+\FunctionTok{dnaToInverse}\NormalTok{(x[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "ACATGTGACTTTCGCTTGCACCCGGGAATC"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Escribe una función qué recibe una hebra directa y obtiene la hebra
+  complementaria
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnaToComplementary }\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{ (dna)\{}
+\NormalTok{  complementaryDna }\OtherTok{\textless{}{-}}\StringTok{\textquotesingle{}\textquotesingle{}}
+  \ControlFlowTok{for}\NormalTok{ (base }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nchar}\NormalTok{(dna))\{}
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      complementaryDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(complementaryDna,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\AttributeTok{sep =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}
+\NormalTok{    \}}
+    \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      complementaryDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(complementaryDna,}\StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)   }
+\NormalTok{    \}}
+   \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      complementaryDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(complementaryDna,}\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{, }\AttributeTok{sep=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}
+\NormalTok{    \}}
+   \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{substr}\NormalTok{(dna, base, base)}\SpecialCharTok{==} \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{      complementaryDna }\OtherTok{=} \FunctionTok{paste}\NormalTok{(complementaryDna,}\StringTok{\textquotesingle{}T\textquotesingle{}}\NormalTok{, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)   }
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{ (complementaryDna)}
+\NormalTok{\}}
+\NormalTok{x[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GTGCACAGTCCCTATCCATGTTTAAAGGCT"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{complementaryDna }\OtherTok{\textless{}{-}} \FunctionTok{dnaToComplementary}\NormalTok{(x[}\DecValTok{1}\NormalTok{])}
+\NormalTok{complementaryDna}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CACGTGTCAGGGATAGGTACAAATTTCCGA"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Si escribimos la secuencia de la hebra complementaria en sentido
+  inverso (5'→3') se obtiene la complementaria inversa
+  (reverse-complement):
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Hebra complementaria: 3'-ACGCTATG-5'
+\item
+  Hebra complementaria inversa: 5'-GTATCGCA-3' Escribe la función en R
+  para obtener la hebra complementaria inversa, desde una hebra
+  complementaria.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reverse\_complement }\OtherTok{\textless{}{-}} \FunctionTok{stri\_reverse}\NormalTok{(complementaryDna)}
+\NormalTok{reverse\_complement}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "AGCCTTTAAACATGGATAGGGACTGTGCAC"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Prueba cada una de las funciones y recuerda que las secuencias pueden
+  contener caracteres especiales donde aparte de ATGC, en ADN, y AUGC,
+  en ARN, pudimos ver algunos guiones (omitidos) y N (desconocido)
+  nucleótido.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Adn }\OtherTok{\textless{}{-}} \FunctionTok{crearsecuenciaAdn}\NormalTok{(}\DecValTok{60}\NormalTok{)}
+\NormalTok{Adn[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CTGCATATTGAATTTCTGTGTTAGAGGGCTAGTAAACTAAGAGAATTCGCCACGATGGCG"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Adn[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "60"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prc }\OtherTok{\textless{}{-}} \FunctionTok{porcentajes}\NormalTok{(Adn[}\DecValTok{1}\NormalTok{])}
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de A\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de A's en la cadena: 28.3333333333333"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de T\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{2}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de T's en la cadena: 28.3333333333333"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de C\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de C's en la cadena: 16.6666666666667"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Porcentaje de G\textquotesingle{}s en la cadena:"}\NormalTok{, prc[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Porcentaje de G's en la cadena: 26.6666666666667"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Rna }\OtherTok{\textless{}{-}} \FunctionTok{AdnToRna}\NormalTok{(Adn[}\DecValTok{1}\NormalTok{])}
+\NormalTok{Rna}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CUGCAUAUUGAAUUUCUGUGUUAGAGGGCUAGUAAACUAAGAGAAUUCGCCACGAUGGCG"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ProteinRna }\OtherTok{\textless{}{-}} \FunctionTok{RnatoProtein}\NormalTok{(Rna)}
+\NormalTok{ProteinRna}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "LeuHisIleGluPheLeuCysStopArgAla"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Inversa }\OtherTok{\textless{}{-}} \FunctionTok{dnaToInverse}\NormalTok{(Adn[}\DecValTok{1}\NormalTok{])}
+\NormalTok{Inversa}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "TCATGCGCCAGGCCCTCACACCGAGAAATCGACGGGTCGGAGAGGCCTATTGTAGCAATA"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{complementaryDna }\OtherTok{\textless{}{-}} \FunctionTok{dnaToComplementary}\NormalTok{(Adn[}\DecValTok{1}\NormalTok{])}
+\NormalTok{complementaryDna}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "GACGTATAACTTAAAGACACAATCTCCCGATCATTTGATTCTCTTAAGCGGTGCTACCGC"
+\end{verbatim}
+
+\end{document}
